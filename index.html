@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈妙 - 个人简历作品集 </title>
+    <style>
+        /* 全局变量：湖蓝色与白色主题 */
+        :root {
+            --primary-color: #00A8CC; /* 湖蓝色 */
+            --primary-light: #E5F6FA;
+            --bg-color: #FFFFFF; /* 白色背景 */
+            --text-main: #333333;
+            --text-muted: #666666;
+            --card-bg: #F8F9FA;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 动态效果：元素初始化状态 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 导航栏 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* 主视觉首屏 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 100%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all var(--transition-speed);
+            box-shadow: 0 4px 15px rgba(0, 168, 204, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 168, 204, 0.5);
+        }
+
+        /* 章节通用样式 */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 卡片布局（教育与项目） */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            transition: all var(--transition-speed);
+            border: 1px solid #eeeeee;
+        }
+
+        /* 动态效果：悬浮卡片浮起 */
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .card .date {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .tag-container {
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* 底部联系方式 */
+        footer {
+            background-color: var(--card-bg);
+            text-align: center;
+            padding: 40px 10%;
+            border-top: 1px solid #eeeeee;
+        }
+
+        footer p {
+            margin: 10px 0;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Chen Miao</div>
+        <div>自动化开发工程师 </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="reveal">
+            <h1>你好，我是陈妙 </h1>
+            <h2>浙江工业大学 ｜ 自动化专业 </h2>
+            <p>熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，拥有扎实的软硬件协同开发与调试能力。 </p>
+            <a href="#projects" class="btn">查看我的项目</a>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title reveal">教育背景</h2>
+        <div class="reveal" style="text-align: center; margin-bottom: 20px;">
+            <p><strong>GPA: 3.9/5.0 (专业排名前10%)</strong> </p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title reveal">核心项目经历</h2>
+        <div class="card-grid">
+            
+            <div class="card reveal">
+                <h3>基于强化学习的四足机器人运动控制与部署 </h3>
+                <span class="date">2026/3 - 至今 </span>
+                <p>依托 Isaac Gym 搭建物理仿真环境，采用 PPO 算法完成运动策略训练。针对 Intel Core Ultra 平台，运用 OpenVINO 完成模型推理优化与加速部署，实现从仿真到真机的全流程迁移。 </p>
+                <div class="tag-container">
+                    <span class="tag">强化学习</span>
+                    <span class="tag">Isaac Gym</span>
+                    <span class="tag">OpenVINO</span>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <h3>基于 SVM 与 LSTM 的手势识别控制系统 </h3>
+                <span class="date">2025/10 - 2026/1 </span>
+                <p>运用 Python 和 OpenCV 实现图像采集。自主搭建数据采集流程，结合 SVM 处理静态手势，LSTM 解析动态动作，系统识别准确率稳定在 90% 以上。 </p>
+                <div class="tag-container">
+                    <span class="tag">Python</span>
+                    <span class="tag">OpenCV</span>
+                    <span class="tag">Machine Learning</span>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <h3>基于 STM32 的高精度恒温控制系统 </h3>
+                <span class="date">2025/3 - 2025/6 </span>
+                <p>基于 STM32F407 搭建硬件环境，采用改进型增量式 PID 控制算法实现温度高精度控制，并完成串口屏人机交互与云端数据上传功能。 </p>
+                <div class="tag-container">
+                    <span class="tag">STM32F407</span>
+                    <span class="tag">PID 控制算法</span>
+                    <span class="tag">硬件开发</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="reveal" style="margin-bottom: 20px; color: var(--primary-color);">联系我</h2>
+        <div class="reveal">
+            <p>Email: 2927261741@qq.com </p>
+            <p>Phone: 18329125657 </p>
+            <p>Location: 杭州 </p>
+        </div>
+    </footer>
+
+    <script>
+        // 监听滚动事件，实现元素淡入动画
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; // 元素出现多少像素后触发动画
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // 页面加载时触发一次
+    </script>
+</body>
+</html>
