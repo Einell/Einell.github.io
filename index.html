@@ -23,7 +23,7 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
 
-        /* 导航栏毛玻璃 */
+        /* 导航栏 */
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 10%; position: fixed; width: 100%; top: 0; z-index: 100;
@@ -129,7 +129,7 @@
         <div class="reveal active">
             <h1>你好，我是陈妙</h1>
             <h2>浙江工业大学 ｜ 自动化专业 (GPA 3.9/5.0)</h2>
-            <p>专注于软硬件协同开发。熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，具备较强的问题分析与独立调试能力。</p>
+            <p>就读于浙江工业大学，自动化专业2027届毕业生。学习能力优异，具备较强的问题分析与独立解决能力，对新技术保持敏锐；善于利用技术社区解决工程技术难题，拥有扎实的硬件调试功底，可独立完成多传感器融合系统调试；熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，软硬件协同开发能力突出。</p>
             <a href="#projects" class="btn">探索我的项目</a>
         </div>
     </section>
@@ -141,7 +141,7 @@
     </section>
 
     <footer>
-        <p>Email: 2927261741@qq.com &nbsp;|&nbsp; Phone: 18329125657 &nbsp;|&nbsp; Location: 杭州</p>
+        <p>Email: chen_miao2005@163.com &nbsp;|&nbsp; Phone: 18329125657 &nbsp;|&nbsp; Location: 浙江-杭州</p>
         <p style="margin-top: 10px; font-size: 0.9rem;">© 2026 Chen Miao. Built with GitHub Pages.</p>
     </footer>
 
@@ -153,7 +153,7 @@
                 <span class="date" id="modalDate" style="color: var(--primary-color); font-weight: bold;">时间</span>
             </div>
             <img src="" alt="项目演示" class="modal-image" id="modalImage" style="display: none;">
-            <div class="modal-image" id="modalImagePlaceholder">项目演示图片/视频区域</div>
+            <div class="modal-image" id="modalImagePlaceholder">项目演示</div>
             
             <div class="modal-body" id="modalDesc">
                 项目详细介绍...
@@ -166,7 +166,6 @@
 
     <script>
         // ================= 数据配置区 =================
-        // 你可以在这里自由修改项目详情、图片和GitHub链接
         const projects = [
             {
                 id: 1,
@@ -176,7 +175,7 @@
                 shortDesc: "采用 PPO 算法完成运动策略训练，并运用 OpenVINO 完成模型推理优化与加速部署，实现虚实迁移。",
                 imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/四足机器人.gif", 
                 fullDesc: `
-                    <p><strong>项目背景：</strong>针对 13th Intel Cup 嵌入式 AI 特别赛开发，核心依托 Unitree Go2 四足机器人平台。</p>
+                    <p><strong>项目背景：</strong>针对电子设计竞赛AI 专项赛开发，核心依托 Unitree Go2 四足机器人平台。</p>
                     <p><strong>算法仿真：</strong>依托 Isaac Gym 搭建物理仿真环境，采用 PPO 强化学习算法完成运动策略训练，并通过参数调优提升模型收敛效率。</p>
                     <p><strong>虚实迁移：</strong>引入域随机化技术缩小虚实环境差异，增强策略泛化性与环境适应性，解决了仿真到真机时的抖动问题。</p>
                     <p><strong>边缘侧部署：</strong>针对 Intel Core Ultra 硬件平台，运用 OpenVINO 完成深度学习模型推理优化、量化压缩与加速部署，大幅降低算力占用，实现机器人自主起立、抗扰动行走功能。</p>
