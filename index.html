@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈妙 | 个人作品集</title>
+    <title>陈妙 | 个人简历</title>
     <style>
         :root {
             --primary-color: #3498db; /* 标准天蓝色 */
@@ -126,9 +126,9 @@
     <section class="hero">
         <div class="reveal active">
             <h1>你好，我是陈妙</h1>
-            <h2>自动化开发工程师 ｜ 2027届毕业生</h2>
-            <p>GPA 3.9/5.0 (排名前10%)。专注于软硬件协同开发，具备从算法仿真、模型训练、量化压缩到嵌入式边缘侧真机部署的完整落地链路，擅长利用新技术解决复杂的工程难题。</p>
-            <a href="#projects" class="btn">查看核心作品</a>
+            <h2>浙江工业大学 ｜ 自动化专业 ｜ 2027届</h2>
+            <p>GPA 3.9/5.0 (前10%)。学习能力优异，具备较强的问题分析与独立解决能力，对新技术保持敏锐；善于利用技术社区解决工程技术难题，拥有扎实的硬件调试功底，可独立完成多传感器融合系统调试；熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，软硬件协同开发能力突出。</p>
+            <a href="#projects" class="btn">查看项目</a>
         </div>
     </section>
 
@@ -164,7 +164,7 @@
     </section>
 
     <footer>
-        <p>Email: chen_miao2005@163.com &nbsp;|&nbsp; 杭州</p>
+        <p>邮箱: chen_miao2005@163.com ｜ 电话：18329125657 ｜浙江-杭州</p>
         <p style="margin-top: 10px; font-size: 0.9rem;">© 2026 Chen Miao. Built with GitHub Pages.</p>
     </footer>
 
@@ -184,9 +184,12 @@
     </div>
 
     <script>
+        // ================= 数据配置区 =================
         const projects = [
             {
-                id: 1, title: "基于强化学习的四足机器人运动控制与部署", date: "2026/03 - 至今",
+                id: 1, 
+                title: "基于强化学习的四足机器人运动控制与部署", 
+                date: "2026/03 - 至今",
                 tags: ["强化学习", "Isaac Gym", "OpenVINO"],
                 shortDesc: "采用 PPO 算法完成策略训练，并运用 OpenVINO 在边缘侧实现推理加速，打通虚实迁移链路。",
                 imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/四足机器人.gif",
@@ -197,10 +200,13 @@
                         <li><strong>仿真环境：</strong>依托 Isaac Gym 搭建物理仿真，采用 PPO 算法完成运动策略训练。</li>
                         <li><strong>虚实迁移：</strong>引入域随机化技术，增强策略泛化性，有效解决了真机部署时的抖动问题。</li>
                         <li><strong>边缘侧部署：</strong>针对 Intel Core Ultra 平台，运用 OpenVINO 完成量化压缩与加速，实现自主起立与抗扰动行走。</li>
-                    </ul>`
+                    </ul>`,
+                github: "#" 
             },
             {
-                id: 2, title: "实时视觉手势识别与控制系统", date: "2025/10 - 2026/01",
+                id: 2, 
+                title: "实时视觉手势识别与控制系统", 
+                date: "2025/10 - 2026/01",
                 tags: ["Python", "OpenCV", "SVM & LSTM"],
                 shortDesc: "结合 SVM 与 LSTM 双模型架构，实现系统级控制，处理延迟严格控制在 100ms 以内。",
                 imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/网页浏览.gif",
@@ -210,10 +216,13 @@
                         <li><strong>双模型协同：</strong>SVM 处理 14 种静态手势（准确率 ≥95%）；LSTM 解析 4 种动态手势。</li>
                         <li><strong>高效提取：</strong>集成 MediaPipe 提取 21 个 3D 关键点，降低计算冗余。</li>
                         <li><strong>量化表现：</strong>静态手势 F1 分数达 0.9976，支持媒体、鼠标等多种系统级交互映射。</li>
-                    </ul>`
+                    </ul>`,
+                github: "https://github.com/Einell/gesture-recognition-project" // [cite: 16]
             },
             {
-                id: 3, title: "智能化高精度 PID 温控系统", date: "2025/03 - 2025/06",
+                id: 3, 
+                title: "智能化高精度 PID 温控 system", 
+                date: "2025/03 - 2025/06",
                 tags: ["STM32", "PID 算法", "硬件开发"],
                 shortDesc: "基于时间片轮询架构与改进型 PID 算法，实现具备图形化界面与远程上报能力的闭环温控平台。",
                 imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/温控系统.jpg",
@@ -223,11 +232,15 @@
                         <li><strong>控制逻辑：</strong>实现位置式 PID，引入积分限幅与条件清零策略，消除调节超调。</li>
                         <li><strong>系统架构：</strong>基于时间片任务调度，确保触摸扫描与数据计算的高并发稳定性。</li>
                         <li><strong>可视化交互：</strong>动态绘制历史温度曲线，并实现基于 I2C 的数码管同步与 WiFi 数据上报。</li>
-                    </ul>`
+                    </ul>`,
+                github: "https://github.com/Einell/Temperature-Control-System-on-STM32F407" // [cite: 18]
             }
         ];
 
+        // ================= 动态渲染与弹窗逻辑 =================
         const projectList = document.getElementById('project-list');
+
+        // 渲染卡片
         projects.forEach(p => {
             const card = document.createElement('div');
             card.className = 'card reveal';
@@ -241,25 +254,45 @@
             projectList.appendChild(card);
         });
 
+        // 打开弹窗（核心修复区域！）
         function openModal(id) {
             const p = projects.find(x => x.id === id);
+            
+            // 1. 填入基本文本
             document.getElementById('modalTitle').innerText = p.title;
             document.getElementById('modalDate').innerText = p.date;
             document.getElementById('modalDesc').innerHTML = p.fullDesc;
+            
+            // 2. 处理图片路径转换
             const img = document.getElementById('modalImage');
             if(p.imageUrl) {
                 img.src = p.imageUrl.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/");
                 img.style.display = 'block';
-            } else { img.style.display = 'none'; }
+            } else { 
+                img.style.display = 'none'; 
+            }
+
+            // ★ 3. 核心修复：动态注入 GitHub 源码的真实跳转链接
+            const githubBtn = document.getElementById('modalGithub');
+            if (p.github && p.github !== "#") {
+                githubBtn.href = p.github;            // 赋上真正的 URL 链接
+                githubBtn.style.display = 'inline-block'; // 显示按钮
+            } else {
+                githubBtn.style.display = 'none';         // 若无链接则隐藏按钮
+            }
+
+            // 4. 显示弹窗并锁定背景滚动
             document.getElementById('projectModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
+        // 关闭弹窗
         function closeModal(e) {
             document.getElementById('projectModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
+        // 滚动淡入动画
         function reveal() {
             document.querySelectorAll('.reveal').forEach(el => {
                 if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
