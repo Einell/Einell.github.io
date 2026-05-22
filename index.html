@@ -3,285 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈妙 - 个人简历作品集 </title>
+    <title>陈妙 - 个人简历作品集</title>
     <style>
-        /* 全局变量：湖蓝色与白色主题 */
         :root {
-            --primary-color: #00A8CC; /* 湖蓝色 */
-            --primary-light: #E5F6FA;
-            --bg-color: #FFFFFF; /* 白色背景 */
-            --text-main: #333333;
-            --text-muted: #666666;
-            --card-bg: #F8F9FA;
-            --transition-speed: 0.3s;
+            --primary-color: #00A8CC;
+            --primary-light: rgba(0, 168, 204, 0.1);
+            --bg-color: #FAFCFF;
+            --text-main: #2C3E50;
+            --text-muted: #7F8C8D;
+            --card-bg: #FFFFFF;
+            --transition-speed: 0.4s;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+        /* 滚动条美化 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
 
-        /* 动态效果：元素初始化状态 */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 导航栏 */
+        /* 导航栏毛玻璃 */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 10%; position: fixed; width: 100%; top: 0; z-index: 100;
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); border-bottom: 1px solid rgba(255,255,255,0.3);
         }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary-color); letter-spacing: 1px;}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        /* 主视觉首屏 */
+        /* 首屏动态背景 */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 10%;
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 100%);
+            height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%;
+            background: radial-gradient(circle at top right, var(--primary-light), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(0, 168, 204, 0.05), transparent 50%);
         }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        .hero h2 {
-            font-size: 24px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 30px;
-        }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 800; color: #1A252F; }
+        .hero h2 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 25px; font-weight: 400; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 650px; margin-bottom: 40px; }
 
         .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            background-color: var(--primary-color);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all var(--transition-speed);
-            box-shadow: 0 4px 15px rgba(0, 168, 204, 0.3);
+            display: inline-block; padding: 14px 32px; background: var(--primary-color); color: #fff;
+            text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1rem;
+            transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 20px rgba(0, 168, 204, 0.3); cursor: pointer; border: none;
         }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0, 168, 204, 0.5); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); box-shadow: none; }
+        .btn-outline:hover { background: var(--primary-color); color: #fff; }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 168, 204, 0.5);
-        }
+        section { padding: 100px 10%; }
+        .section-title { font-size: 2.2rem; margin-bottom: 50px; text-align: center; font-weight: 700; color: #1A252F;}
+        .section-title::after { content: ''; width: 60px; height: 4px; background: var(--primary-color); display: block; margin: 15px auto 0; border-radius: 2px; }
 
-        /* 章节通用样式 */
-        section {
-            padding: 80px 10%;
-        }
-
-        .section-title {
-            font-size: 32px;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 50px;
-            height: 3px;
-            background-color: var(--primary-color);
-            display: block;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* 卡片布局（教育与项目） */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
+        /* 悬浮呼吸卡片 */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .card {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            transition: all var(--transition-speed);
-            border: 1px solid #eeeeee;
+            background: var(--card-bg); padding: 40px 30px; border-radius: 20px; cursor: pointer;
+            transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(0,0,0,0.03); position: relative; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--primary-color); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+        }
+        .card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0, 168, 204, 0.1); }
+        .card:hover::before { transform: scaleX(1); }
+        .card h3 { font-size: 1.4rem; color: #1A252F; margin-bottom: 10px; }
+        .card .date { font-size: 0.9rem; color: var(--primary-color); margin-bottom: 20px; display: block; font-weight: bold;}
+        .card p { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; }
+        .tag { display: inline-block; padding: 6px 14px; background: var(--primary-light); color: var(--primary-color); border-radius: 20px; font-size: 0.85rem; margin: 0 8px 8px 0; font-weight: 500;}
 
-        /* 动态效果：悬浮卡片浮起 */
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border-color: var(--primary-color);
-        }
+        /* 点击查看提示 */
+        .click-hint { display: inline-flex; align-items: center; color: var(--primary-color); font-size: 0.9rem; font-weight: bold; margin-top: 10px;}
+        .click-hint::after { content: '→'; margin-left: 5px; transition: transform 0.3s; }
+        .card:hover .click-hint::after { transform: translateX(5px); }
 
-        .card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 20px;
+        /* 详情弹窗 (Modal) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(8px);
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.4s ease;
         }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-content {
+            background: #fff; width: 90%; max-width: 900px; max-height: 90vh; border-radius: 24px;
+            overflow-y: auto; padding: 50px; position: relative;
+            transform: translateY(50px) scale(0.95); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        
+        .close-btn {
+            position: absolute; top: 25px; right: 30px; font-size: 30px; color: #999;
+            cursor: pointer; transition: color 0.3s; line-height: 1;
+        }
+        .close-btn:hover { color: #333; }
 
-        .card .date {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            display: block;
-        }
+        .modal-header { margin-bottom: 30px; }
+        .modal-title { font-size: 2rem; color: #1A252F; margin-bottom: 15px; }
+        .modal-image { width: 100%; height: 350px; object-fit: cover; border-radius: 16px; margin-bottom: 30px; background-color: #f0f4f8; display: flex; align-items: center; justify-content: center; color: #aaa; }
+        .modal-body { font-size: 1.05rem; color: #444; line-height: 1.8; margin-bottom: 40px; }
+        .modal-body p { margin-bottom: 15px; }
+        
+        .action-buttons { display: flex; gap: 15px; }
 
-        .tag-container {
-            margin-top: 15px;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 4px 10px;
-            background-color: var(--primary-light);
-            color: var(--primary-color);
-            border-radius: 20px;
-            font-size: 12px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-
-        /* 底部联系方式 */
-        footer {
-            background-color: var(--card-bg);
-            text-align: center;
-            padding: 40px 10%;
-            border-top: 1px solid #eeeeee;
-        }
-
-        footer p {
-            margin: 10px 0;
-            color: var(--text-muted);
-        }
+        /* 动画类 */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        footer { background: #fff; text-align: center; padding: 40px 10%; border-top: 1px solid rgba(0,0,0,0.05); color: var(--text-muted); }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Chen Miao</div>
-        <div>自动化开发工程师 </div>
+        <div style="font-weight: 500; color: #555;">自动化开发工程师</div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="reveal">
-            <h1>你好，我是陈妙 </h1>
-            <h2>浙江工业大学 ｜ 自动化专业 </h2>
-            <p>熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，拥有扎实的软硬件协同开发与调试能力。 </p>
-            <a href="#projects" class="btn">查看我的项目</a>
-        </div>
-    </section>
-
-    <section id="education">
-        <h2 class="section-title reveal">教育背景</h2>
-        <div class="reveal" style="text-align: center; margin-bottom: 20px;">
-            <p><strong>GPA: 3.9/5.0 (专业排名前10%)</strong> </p>
+    <section class="hero">
+        <div class="reveal active">
+            <h1>你好，我是陈妙</h1>
+            <h2>浙江工业大学 ｜ 自动化专业 (GPA 3.9/5.0)</h2>
+            <p>专注于软硬件协同开发。熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，具备较强的问题分析与独立调试能力。</p>
+            <a href="#projects" class="btn">探索我的项目</a>
         </div>
     </section>
 
     <section id="projects">
         <h2 class="section-title reveal">核心项目经历</h2>
-        <div class="card-grid">
-            
-            <div class="card reveal">
-                <h3>基于强化学习的四足机器人运动控制与部署 </h3>
-                <span class="date">2026/3 - 至今 </span>
-                <p>依托 Isaac Gym 搭建物理仿真环境，采用 PPO 算法完成运动策略训练。针对 Intel Core Ultra 平台，运用 OpenVINO 完成模型推理优化与加速部署，实现从仿真到真机的全流程迁移。 </p>
-                <div class="tag-container">
-                    <span class="tag">强化学习</span>
-                    <span class="tag">Isaac Gym</span>
-                    <span class="tag">OpenVINO</span>
-                </div>
+        <div class="card-grid" id="project-list">
             </div>
-
-            <div class="card reveal">
-                <h3>基于 SVM 与 LSTM 的手势识别控制系统 </h3>
-                <span class="date">2025/10 - 2026/1 </span>
-                <p>运用 Python 和 OpenCV 实现图像采集。自主搭建数据采集流程，结合 SVM 处理静态手势，LSTM 解析动态动作，系统识别准确率稳定在 90% 以上。 </p>
-                <div class="tag-container">
-                    <span class="tag">Python</span>
-                    <span class="tag">OpenCV</span>
-                    <span class="tag">Machine Learning</span>
-                </div>
-            </div>
-
-            <div class="card reveal">
-                <h3>基于 STM32 的高精度恒温控制系统 </h3>
-                <span class="date">2025/3 - 2025/6 </span>
-                <p>基于 STM32F407 搭建硬件环境，采用改进型增量式 PID 控制算法实现温度高精度控制，并完成串口屏人机交互与云端数据上传功能。 </p>
-                <div class="tag-container">
-                    <span class="tag">STM32F407</span>
-                    <span class="tag">PID 控制算法</span>
-                    <span class="tag">硬件开发</span>
-                </div>
-            </div>
-
-        </div>
     </section>
 
     <footer>
-        <h2 class="reveal" style="margin-bottom: 20px; color: var(--primary-color);">联系我</h2>
-        <div class="reveal">
-            <p>Email: 2927261741@qq.com </p>
-            <p>Phone: 18329125657 </p>
-            <p>Location: 杭州 </p>
-        </div>
+        <p>Email: 2927261741@qq.com &nbsp;|&nbsp; Phone: 18329125657 &nbsp;|&nbsp; Location: 杭州</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">© 2026 Chen Miao. Built with GitHub Pages.</p>
     </footer>
 
+    <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">项目标题</h2>
+                <span class="date" id="modalDate" style="color: var(--primary-color); font-weight: bold;">时间</span>
+            </div>
+            <img src="" alt="项目演示" class="modal-image" id="modalImage" style="display: none;">
+            <div class="modal-image" id="modalImagePlaceholder">项目演示图片/视频区域</div>
+            
+            <div class="modal-body" id="modalDesc">
+                项目详细介绍...
+            </div>
+            <div class="action-buttons">
+                <a href="#" target="_blank" class="btn" id="modalGithub">查看 GitHub 源码</a>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // 监听滚动事件，实现元素淡入动画
+        // ================= 数据配置区 =================
+        // 你可以在这里自由修改项目详情、图片和GitHub链接
+        const projects = [
+            {
+                id: 1,
+                title: "基于强化学习的四足机器人运动控制与部署",
+                date: "2026/3 - 至今",
+                tags: ["强化学习", "Isaac Gym", "OpenVINO"],
+                shortDesc: "采用 PPO 算法完成运动策略训练，并运用 OpenVINO 完成模型推理优化与加速部署，实现虚实迁移。",
+                imageUrl: "", // 在双引号中填入你的动图或图片网络地址，例如 "https://..."
+                fullDesc: `
+                    <p><strong>项目背景：</strong>针对 13th Intel Cup 嵌入式 AI 特别赛开发，核心依托 Unitree Go2 四足机器人平台。</p>
+                    <p><strong>算法仿真：</strong>依托 Isaac Gym 搭建物理仿真环境，采用 PPO 强化学习算法完成运动策略训练，并通过参数调优提升模型收敛效率。</p>
+                    <p><strong>虚实迁移：</strong>引入域随机化技术缩小虚实环境差异，增强策略泛化性与环境适应性，解决了仿真到真机时的抖动问题。</p>
+                    <p><strong>边缘侧部署：</strong>针对 Intel Core Ultra 硬件平台，运用 OpenVINO 完成深度学习模型推理优化、量化压缩与加速部署，大幅降低算力占用，实现机器人自主起立、抗扰动行走功能。</p>
+                `,
+                github: "#" // 填入你的比赛项目仓库链接
+            },
+            {
+                id: 2,
+                title: "基于 SVM 与 LSTM 的手势识别控制系统",
+                date: "2025/10 - 2026/1",
+                tags: ["Python", "OpenCV", "Machine Learning"],
+                shortDesc: "结合 SVM 处理静态手势，LSTM 解析动态动作，系统识别准确率稳定在 90% 以上。",
+                imageUrl: "", // 填入图片地址
+                fullDesc: `
+                    <p>独立完成整套手势识别控制系统设计与开发。运用 Python、OpenCV 实现图像采集与手部关键点检测。</p>
+                    <p>自主搭建数据采集流程，结合 SVM 算法处理静态手势、LSTM 模型解析动态手势动作。通过不断优化网络模型结构，最终在复杂背景下的识别准确率稳定在 90% 以上。</p>
+                `,
+                github: "https://github.com/Einell/gesture-recognition-project"
+            },
+            {
+                id: 3,
+                title: "基于 STM32 的高精度恒温控制系统",
+                date: "2025/3 - 2025/6",
+                tags: ["STM32F407", "PID 算法", "硬件开发"],
+                shortDesc: "采用改进型增量式 PID 控制算法，引入积分分离策略减少调节超调，实现温度高精度稳定控制。",
+                imageUrl: "", // 填入图片地址
+                fullDesc: `
+                    <p><strong>硬件搭建：</strong>基于 STM32F407 单片机，搭配温湿度传感器、电机、LED显示屏及 Wi-Fi 模块，完成整套环境调控硬件系统搭建。</p>
+                    <p><strong>控制算法：</strong>采用改进型增量式 PID 控制算法，引入积分分离策略减少调节超调，实现温度的高精度闭环稳定控制。</p>
+                    <p><strong>物联网交互：</strong>完成串口屏人机交互界面开发与云端数据上传功能，实时监测设备运行状态，系统经过长时间测试，运行稳定可靠。</p>
+                `,
+                github: "https://github.com/Einell/Temperature-Control-System-on-STM32F407"
+            }
+        ];
+
+        // ================= 渲染与交互逻辑 =================
+        const projectList = document.getElementById('project-list');
+        const modal = document.getElementById('projectModal');
+
+        // 生成卡片
+        projects.forEach((proj, index) => {
+            const tagsHtml = proj.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+            const card = document.createElement('div');
+            card.className = `card reveal ${index < 3 ? 'active' : ''}`; // 默认前几个直接显示
+            card.innerHTML = `
+                <h3>${proj.title}</h3>
+                <span class="date">${proj.date}</span>
+                <p>${proj.shortDesc}</p>
+                <div style="margin-bottom: 15px;">${tagsHtml}</div>
+                <div class="click-hint">点击查看详情</div>
+            `;
+            card.onclick = () => openModal(proj.id);
+            projectList.appendChild(card);
+        });
+
+        // 打开弹窗
+        function openModal(id) {
+            const proj = projects.find(p => p.id === id);
+            document.getElementById('modalTitle').innerText = proj.title;
+            document.getElementById('modalDate').innerText = proj.date;
+            document.getElementById('modalDesc').innerHTML = proj.fullDesc;
+            
+            // 处理图片/视频显示
+            const imgElement = document.getElementById('modalImage');
+            const placeholder = document.getElementById('modalImagePlaceholder');
+            if (proj.imageUrl) {
+                imgElement.src = proj.imageUrl;
+                imgElement.style.display = 'block';
+                placeholder.style.display = 'none';
+            } else {
+                imgElement.style.display = 'none';
+                placeholder.style.display = 'flex';
+            }
+
+            // 处理 GitHub 按钮
+            const githubBtn = document.getElementById('modalGithub');
+            if(proj.github && proj.github !== "#") {
+                githubBtn.href = proj.github;
+                githubBtn.style.display = 'inline-block';
+            } else {
+                githubBtn.style.display = 'none';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 背景禁止滚动
+        }
+
+        // 关闭弹窗
+        function closeModal(e) {
+            if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // 恢复滚动
+            }
+        }
+
+        // 滚动淡入动画
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 50; // 元素出现多少像素后触发动画
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 50) {
                     reveals[i].classList.add("active");
                 }
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // 页面加载时触发一次
+        setTimeout(reveal, 100);
     </script>
 </body>
 </html>
