@@ -111,12 +111,38 @@
             section { padding: 60px 5%; }
             .modal-content { padding: 30px; }
         }
+        /* 头像容器组合 */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* 头像和名字之间的间距 */
+        }
+
+        /* 圆形头像样式 */
+        .avatar {
+            width: 40px;  /* 头像大小，可以根据喜好调整 */
+            height: 40px;
+            border-radius: 50%; /* 完美圆形 */
+            object-fit: cover;  /* 确保图片变形时能居中裁剪 */
+            border: 2px solid rgba(52, 152, 219, 0.2); /* 淡淡的天蓝色边框 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* 柔和的阴影 */
+            transition: var(--transition);
+        }
+        
+        /* 鼠标悬停在头像上时有轻微放大效果 */
+        .avatar:hover {
+            transform: scale(1.08);
+            border-color: var(--primary-color);
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Chen Miao</div>
+        <div class="logo-container">
+            <img src="https://github.com/Einell.png" alt="me" class="avatar">
+            <div class="logo">Chen Miao</div>
+        </div>
         <nav>
             <a href="#skills">技能</a>
             <a href="#projects">项目</a>
