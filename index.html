@@ -3,511 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陈妙 - 个人简历作品集</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <title>陈妙 | 个人作品集</title>
     <style>
         :root {
-            /* 活泼大胆的电玩像素配色 */
-            --primary-color: #FF0055; /* 霓虹粉 */
-            --secondary-color: #00FFCC; /* 亮青色 */
-            --accent-color: #FFCC00; /* 赛博黄 */
-            
-            /* 代码编辑器深邃黑底色 */
-            --bg-color: #181818; 
-            --card-bg: #252526; 
-            
-            /* 文本颜色 */
-            --text-main: #E0E0E0;
-            --text-muted: #A0A0A0;
-            --border-color: #E0E0E0;
-            
-            --transition-speed: 0.15s; /* 像素风需要更干脆利落的动画 */
-            
-            /* 字体设置：英文使用像素字体，中文使用不抗锯齿的宋体模拟像素效果 */
-            --font-pixel: 'Press Start 2P', 'SimSun', monospace;
-            --font-body: 'VT323', 'SimSun', monospace;
+            --primary-color: #3498db; /* 标准天蓝色 */
+            --primary-dark: #2980b9;
+            --bg-start: #e0f2fe; /* 左上角天蓝 */
+            --bg-end: #ffffff;   /* 右下角白色 */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
-            /* 强制关闭字体平滑，呈现硬核像素边缘 */
-            -webkit-font-smoothing: none;
-            font-smooth: never;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
         }
 
-        body { 
-            background-color: var(--bg-color); 
-            /* 像素点阵背景 */
-            background-image: 
-                linear-gradient(rgba(0, 255, 204, 0.05) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(0, 255, 204, 0.05) 2px, transparent 2px);
-            background-size: 30px 30px;
-            background-position: center center;
-            color: var(--text-main); 
-            line-height: 1.6; 
-            overflow-x: hidden; 
-            font-family: var(--font-body);
-            font-size: 18px;
-        }
-
-        /* 块状像素滚动条 */
-        ::-webkit-scrollbar { width: 12px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); border-left: 2px solid var(--border-color); }
-        ::-webkit-scrollbar-thumb { background: var(--primary-color); border: 2px solid var(--border-color); }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
-
-        /* 导航栏 - 像素块风格 */
+        /* 导航栏 */
         header {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 10%; position: fixed; width: 100%; top: 0; z-index: 100;
-            background: var(--bg-color); 
-            border-bottom: 4px solid var(--border-color);
-            box-shadow: 0 4px 0px var(--primary-color);
+            padding: 20px 10%; position: fixed; width: 100%; top: 0; z-index: 1000;
+            background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
-        .logo { 
-            font-family: var(--font-pixel); font-size: 20px; 
-            color: var(--secondary-color); 
-            text-shadow: 2px 2px 0px #000;
-        }
-        header a {
-            font-family: var(--font-pixel); font-size: 14px;
-            transition: color var(--transition-speed);
-        }
-        header a:hover { color: var(--accent-color) !important; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); letter-spacing: -0.5px; }
+        nav a { text-decoration: none; color: var(--text-main); font-weight: 500; margin-left: 30px; transition: var(--transition); }
+        nav a:hover { color: var(--primary-color); }
 
-        /* 首屏动态背景 */
+        /* 主视觉区 */
         .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%;
-            position: relative;
+            height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 0 10%;
+            margin-top: 60px;
         }
-        .hero::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 80% 20%, rgba(255, 0, 85, 0.1), transparent 40%),
-                        radial-gradient(circle at 20% 80%, rgba(0, 255, 204, 0.1), transparent 40%);
-            z-index: -1; pointer-events: none;
-        }
-        .hero h1 { 
-            font-family: var(--font-pixel); font-size: 3rem; margin-bottom: 20px; 
-            color: var(--text-main); text-shadow: 4px 4px 0px var(--primary-color); 
-        }
-        .hero h2 { 
-            font-family: var(--font-body); font-size: 1.8rem; color: var(--secondary-color); 
-            margin-bottom: 25px; font-weight: bold; 
-            background: #000; display: inline-block; padding: 5px 10px; border: 2px solid var(--secondary-color);
-        }
-        .hero p { 
-            font-size: 1.2rem; color: var(--text-muted); max-width: 650px; margin-bottom: 40px; 
-            background: var(--card-bg); padding: 15px; border: 2px dashed var(--border-color);
-        }
+        .hero h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: #0f172a; }
+        .hero h2 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 30px; font-weight: 400; }
+        .hero p { font-size: 1.15rem; color: var(--text-muted); max-width: 750px; margin-bottom: 40px; }
 
-        /* 像素按钮 */
         .btn {
-            display: inline-block; padding: 12px 24px; 
-            background: var(--primary-color); color: #fff;
-            text-decoration: none; font-family: var(--font-pixel); font-size: 14px;
-            border: 4px solid #fff;
-            box-shadow: 6px 6px 0px #000; 
-            cursor: pointer; 
-            transition: all var(--transition-speed);
-            text-transform: uppercase;
+            display: inline-block; padding: 14px 35px; background: var(--primary-color); color: #fff;
+            text-decoration: none; border-radius: 8px; font-weight: 600; transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2); border: none; cursor: pointer;
         }
-        .btn:hover { 
-            transform: translate(2px, 2px); 
-            box-shadow: 4px 4px 0px #000; 
-            background: var(--accent-color); color: #000; border-color: #000;
-        }
-        .btn:active {
-            transform: translate(6px, 6px);
-            box-shadow: 0px 0px 0px #000;
-        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(52, 152, 219, 0.3); background: var(--primary-dark); }
 
+        /* 章节通用样式 */
         section { padding: 100px 10%; }
-        
-        /* 像素风标题 */
-        .section-title { 
-            font-family: var(--font-pixel); font-size: 2rem; margin-bottom: 60px; 
-            text-align: center; color: var(--text-main); text-shadow: 3px 3px 0px var(--primary-color);
-        }
-        .section-title::after { 
-            content: ''; width: 80px; height: 8px; background: var(--secondary-color); 
-            display: block; margin: 20px auto 0; box-shadow: 4px 4px 0px #000;
-        }
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 60px; text-align: left; }
+        .section-title::after { content: ''; width: 60px; height: 5px; background: var(--primary-color); display: block; margin-top: 15px; border-radius: 10px; }
 
-        /* 实体块状悬浮卡片 */
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        /* 卡片布局 */
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
         .card {
-            background: var(--card-bg); padding: 30px; cursor: pointer;
-            border: 4px solid var(--border-color);
-            box-shadow: 8px 8px 0px var(--primary-color);
-            transition: all var(--transition-speed);
-            position: relative; display: flex; flex-direction: column;
+            background: var(--card-bg); padding: 40px; border-radius: 16px; cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+            display: flex; flex-direction: column;
         }
-        /* 卡片悬停微动效 */
-        .card:hover { 
-            transform: translate(-4px, -4px); 
-            box-shadow: 12px 12px 0px var(--secondary-color); 
-            border-color: var(--secondary-color);
-            background: #2a2a2b;
-        }
-        /* 顶部装饰条 */
-        .card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 8px;
-            background: var(--border-color); transition: background var(--transition-speed);
-        }
-        .card:hover::before { background: var(--secondary-color); }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08); border-color: var(--primary-color); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 12px; }
+        .card .date { font-size: 0.9rem; color: var(--primary-color); font-weight: 600; margin-bottom: 20px; display: block; }
+        .card p { color: var(--text-muted); font-size: 1rem; flex-grow: 1; }
 
-        .card h3 { 
-            font-family: var(--font-pixel); font-size: 1.2rem; color: var(--text-main); 
-            margin-top: 10px; margin-bottom: 15px; line-height: 1.4;
-        }
-        .card .date { 
-            font-family: var(--font-pixel); font-size: 0.8rem; color: var(--accent-color); 
-            margin-bottom: 20px; display: block; background: #000; padding: 5px; border: 2px solid var(--accent-color); width: fit-content;
-        }
-        .card p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px; }
-        
-        /* 像素化标签 */
-        .tag-container { margin-top: auto; }
-        .tag { 
-            display: inline-block; padding: 6px 10px; 
-            background: #000; color: var(--secondary-color); 
-            border: 2px solid var(--secondary-color); 
-            font-family: var(--font-pixel); font-size: 12px; margin: 0 8px 8px 0; 
-            box-shadow: 2px 2px 0px rgba(0,255,204,0.3);
-        }
-        .card:hover .tag { background: var(--secondary-color); color: #000; }
+        .tag-container { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { padding: 6px 15px; background: rgba(52, 152, 219, 0.08); color: var(--primary-color); border-radius: 6px; font-size: 0.85rem; font-weight: 500; }
 
-        /* 点击查看提示 */
-        .click-hint { 
-            display: inline-flex; align-items: center; color: var(--primary-color); 
-            font-family: var(--font-pixel); font-size: 12px; margin-top: 15px;
-        }
-        .click-hint::after { content: '>'; margin-left: 10px; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-
-        /* 复古弹窗 (Modal) */
+        /* 详情弹窗 */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.7); 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 2000;
+            background: rgba(15, 23, 42, 0.3); backdrop-filter: blur(10px);
             display: flex; justify-content: center; align-items: center;
-            opacity: 0; visibility: hidden; transition: all var(--transition-speed);
+            opacity: 0; visibility: hidden; transition: var(--transition);
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        
         .modal-content {
-            background: var(--card-bg); width: 90%; max-width: 900px; max-height: 90vh; 
-            overflow-y: auto; padding: 40px; position: relative;
-            border: 6px solid var(--border-color);
-            box-shadow: 15px 15px 0px #000;
-            transform: scale(0.9); transition: all var(--transition-speed);
+            background: #fff; width: 90%; max-width: 900px; max-height: 90vh; border-radius: 20px;
+            overflow-y: auto; padding: 60px; position: relative;
+            transform: translateY(30px); transition: var(--transition);
         }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        
-        /* 像素风关闭按钮 */
-        .close-btn {
-            position: absolute; top: 15px; right: 20px; font-family: var(--font-pixel);
-            font-size: 24px; color: var(--primary-color); cursor: pointer; 
-            background: #000; border: 4px solid var(--primary-color); padding: 0 5px;
-            box-shadow: 4px 4px 0px #000; transition: all 0.1s;
-        }
-        .close-btn:hover { background: var(--primary-color); color: #fff; transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000; }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-btn { position: absolute; top: 25px; right: 30px; font-size: 2rem; color: var(--text-muted); cursor: pointer; }
 
-        .modal-header { margin-bottom: 30px; border-bottom: 4px dashed var(--border-color); padding-bottom: 20px; }
-        .modal-title { font-family: var(--font-pixel); font-size: 1.5rem; color: var(--secondary-color); margin-bottom: 15px; line-height: 1.5; }
-        .modal-image { width: 100%; height: auto; border: 6px solid var(--border-color); margin-bottom: 30px; background-color: #000; display: flex; align-items: center; justify-content: center; color: var(--secondary-color); font-family: var(--font-pixel); }
-        .modal-body { font-size: 1.1rem; color: var(--text-main); line-height: 1.8; margin-bottom: 40px; }
-        .modal-body p { margin-bottom: 15px; }
-        .modal-body h4 { font-family: var(--font-pixel); margin-top: 30px; margin-bottom: 15px; color: var(--accent-color); font-size: 1.2rem; }
-        .modal-body ul li { margin-left: 20px; margin-bottom: 10px; list-style-type: square; }
-        
-        .action-buttons { display: flex; gap: 15px; }
+        .modal-title { font-size: 2.2rem; margin-bottom: 10px; }
+        .modal-image { width: 100%; border-radius: 12px; margin: 30px 0; border: 1px solid #f1f5f9; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .modal-body h4 { margin: 30px 0 15px; color: var(--primary-color); font-size: 1.2rem; }
+        .modal-body ul { padding-left: 20px; }
+        .modal-body li { margin-bottom: 12px; color: var(--text-muted); }
 
-        /* 动画类 */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.5s ease-out; }
+        /* 动画 */
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        
-        footer { 
-            background: var(--bg-color); text-align: center; padding: 40px 10%; 
-            border-top: 4px solid var(--border-color); color: var(--text-muted); 
-            font-family: var(--font-body); font-size: 1.1rem;
+
+        footer { text-align: center; padding: 60px 10%; color: var(--text-muted); border-top: 1px solid rgba(0,0,0,0.05); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            section { padding: 60px 5%; }
+            .modal-content { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-    <div class="logo">Chen Miao</div>
-    <div style="display: flex; gap: 20px;">
-        <a href="#skills" style="text-decoration: none; color: var(--text-main); font-weight: 500;">专业技能</a>
-        <a href="#projects" style="text-decoration: none; color: var(--text-main); font-weight: 500;">项目经历</a>
-    </div>
+        <div class="logo">Chen Miao</div>
+        <nav>
+            <a href="#skills">技能</a>
+            <a href="#projects">项目</a>
+        </nav>
     </header>
 
     <section class="hero">
         <div class="reveal active">
             <h1>你好，我是陈妙</h1>
-            <h2>浙江工业大学 ｜ 自动化专业 (GPA 3.9/5.0)</h2>
-            <p>就读于浙江工业大学，自动化专业2027届毕业生。学习能力优异，具备较强的问题分析与独立解决能力，对新技术保持敏锐；善于利用技术社区解决工程技术难题，拥有扎实的硬件调试功底，可独立完成多传感器融合系统调试；熟悉从算法仿真、模型训练、量化压缩到嵌入式真机部署的完整落地流程，软硬件协同开发能力突出。</p>
-            <a href="#projects" class="btn">探索我的项目</a>
+            <h2>自动化开发工程师 ｜ 2027届毕业生</h2>
+            <p>GPA 3.9/5.0 (排名前10%)。专注于软硬件协同开发，具备从算法仿真、模型训练、量化压缩到嵌入式边缘侧真机部署的完整落地链路，擅长利用新技术解决复杂的工程难题。</p>
+            <a href="#projects" class="btn">查看核心作品</a>
         </div>
     </section>
-    
+
     <section id="skills">
         <h2 class="section-title reveal">专业技能</h2>
         <div class="card-grid">
-            
             <div class="card reveal">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <span style="font-size: 24px; margin-right: 10px;"></span>
-                    <h3 style="margin-bottom: 0;">编程语言与开发工具</h3>
-                </div>
-                <p>熟练掌握 <strong>C/C++、Python、Java</strong> 编程语言，具备良好的代码规范与算法基础。熟练使用 VS Code 进行高效开发，精通 <strong>Git</strong> 版本控制工具进行协同代码管理。</p>
-                <div class="tag-container" style="margin-top: auto;">
-                    <span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Git</span><span class="tag">VS Code</span>
-                </div>
+                <h3>编程与开发工具</h3>
+                <p>熟练掌握 <strong>C/C++、Python、Java</strong>，具备良好代码规范与算法基础；熟练使用 VS Code 与 Git 协作。</p>
+                <div class="tag-container"><span class="tag">C/C++</span><span class="tag">Python</span><span class="tag">Git</span></div>
             </div>
-
             <div class="card reveal">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <span style="font-size: 24px; margin-right: 10px;"></span>
-                    <h3 style="margin-bottom: 0;">嵌入式与 Linux 开发</h3>
-                </div>
-                <p>熟悉 Linux 系统开发（应用层编程、交叉编译）及 ARM 架构；精通 <strong>STM32F4 系列</strong> 嵌入式开发，熟练运用 Keil5、STM32CubeMX，具备独立阅读硬件电路原理图能力。熟悉常用硬件通信协议，能够熟练操作<strong>示波器</strong>等仪器进行硬件调试与故障排查。</p>
-                <div class="tag-container">
-                    <span class="tag">STM32 (F4)</span><span class="tag">Linux</span><span class="tag">ARM 架构</span><span class="tag">硬件调试</span><span class="tag">通信协议</span>
-                </div>
+                <h3>嵌入式与 Linux</h3>
+                <p>熟悉 Linux 系统应用层编程与交叉编译；精通 <strong>STM32F4 系列</strong> 开发，具备独立调试硬件电路与故障排查能力。</p>
+                <div class="tag-container"><span class="tag">STM32</span><span class="tag">Linux</span><span class="tag">ARM</span></div>
             </div>
-
             <div class="card reveal">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <span style="font-size: 24px; margin-right: 10px;"></span>
-                    <h3 style="margin-bottom: 0;">深度学习与边缘计算</h3>
-                </div>
-                <p>具备扎实的深度学习模型训练与部署经验，熟练使用 <strong>PyTorch、TensorFlow</strong> 框架；掌握机器学习算法的实际应用，熟悉模型在边缘端（如 NPU）的部署与量化加速技术。</p>
-                <div class="tag-container">
-                    <span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">边缘计算</span><span class="tag">模型量化</span>
-                </div>
+                <h3>AI 与边缘计算</h3>
+                <p>具备 <strong>PyTorch、TensorFlow</strong> 模型训练经验，熟悉模型在边缘端 NPU 的部署与量化加速技术。</p>
+                <div class="tag-container"><span class="tag">PyTorch</span><span class="tag">OpenVINO</span><span class="tag">边缘 AI</span></div>
             </div>
-
             <div class="card reveal">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <span style="font-size: 24px; margin-right: 10px;"></span>
-                    <h3 style="margin-bottom: 0;">机器人仿真与强化学习</h3>
-                </div>
-                <p>熟练运用 <strong>Isaac Gym/Lab/Sim、MuJoCo</strong> 搭建机器人物理仿真环境，并开展基于 <strong>PPO 算法</strong> 的强化学习训练。具备强化学习模型的量化、压缩及边缘端（OpenVINO IR）迁移部署经验。</p>
-                <div class="tag-container">
-                    <span class="tag">Isaac Gym</span><span class="tag">MuJoCo</span><span class="tag">PPO 算法</span><span class="tag">OpenVINO</span>
-                </div>
+                <h3>机器人仿真</h3>
+                <p>熟练运用 <strong>Isaac Gym/Sim、MuJoCo</strong> 搭建物理仿真环境，并开展基于 <strong>PPO 算法</strong> 的强化学习训练。</p>
+                <div class="tag-container"><span class="tag">强化学习</span><span class="tag">机器人</span><span class="tag">仿真</span></div>
             </div>
-
-            <div class="card reveal">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <span style="font-size: 24px; margin-right: 10px;"></span>
-                    <h3 style="margin-bottom: 0;">FPGA 与仿真</h3>
-                </div>
-                <p>了解 FPGA 开发流程，掌握 <strong>Verilog 硬件描述语言</strong> 及仿真验证，熟练使用 <strong>Quartus</strong> 工程软件进行软硬件协同仿真与时序验证。</p>
-                <div class="tag-container">
-                    <span class="tag">FPGA</span><span class="tag">Verilog</span><span class="tag">Quartus</span>
-                </div>
-            </div>
-
-            <div class="card reveal">
-                <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                    <span style="font-size: 24px; margin-right: 10px;"></span>
-                    <h3 style="margin-bottom: 0;">算法仿真与技术文档</h3>
-                </div>
-                <p>熟练使用 <strong>MATLAB</strong> 进行图像处理、控制系统设计与算法仿真；熟练操作 Office 办公软件，能够输出规范的软硬件技术报告、工程开发文档与技术总结。</p>
-                <div class="tag-container">
-                    <span class="tag">MATLAB</span><span class="tag">技术文档</span><span class="tag">图像处理</span>
-                </div>
-            </div>
-
         </div>
     </section>
-    
+
     <section id="projects">
-        <h2 class="section-title reveal">核心项目经历</h2>
-        <div class="card-grid" id="project-list">
-            </div>
+        <h2 class="section-title reveal">项目案例</h2>
+        <div class="card-grid" id="project-list"></div>
     </section>
 
     <footer>
-        <p>Email: chen_miao2005@163.com &nbsp;|&nbsp; Phone: 18329125657 &nbsp;|&nbsp; Location: 浙江-杭州</p>
+        <p>Email: chen_miao2005@163.com &nbsp;|&nbsp; 杭州</p>
         <p style="margin-top: 10px; font-size: 0.9rem;">© 2026 Chen Miao. Built with GitHub Pages.</p>
     </footer>
 
     <div class="modal-overlay" id="projectModal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModal(event)">X</span>
+            <span class="close-btn" onclick="closeModal(event)">&times;</span>
             <div class="modal-header">
                 <h2 class="modal-title" id="modalTitle">项目标题</h2>
-                <span class="date" id="modalDate" style="color: var(--accent-color); font-weight: bold; font-family: var(--font-pixel); font-size: 0.9rem;">时间</span>
+                <span class="date" id="modalDate">时间</span>
             </div>
-            <img src="" alt="项目演示" class="modal-image" id="modalImage" style="display: none;">
-            <div class="modal-image" id="modalImagePlaceholder" style="padding: 50px;">NO IMAGE DATA</div>
-            
-            <div class="modal-body" id="modalDesc">
-                项目详细介绍...
-            </div>
-            <div class="action-buttons">
+            <img src="" alt="Demo" class="modal-image" id="modalImage" style="display: none;">
+            <div class="modal-body" id="modalDesc"></div>
+            <div style="margin-top: 40px;">
                 <a href="#" target="_blank" class="btn" id="modalGithub">查看 GitHub 源码</a>
             </div>
         </div>
     </div>
 
     <script>
-        // ================= 数据配置区 =================
         const projects = [
             {
-                id: 1,
-                title: "基于强化学习的四足机器人运动控制与部署",
-                date: "2026/3 - 至今",
+                id: 1, title: "基于强化学习的四足机器人运动控制与部署", date: "2026/03 - 至今",
                 tags: ["强化学习", "Isaac Gym", "OpenVINO"],
-                shortDesc: "采用 PPO 算法完成运动策略训练，并运用 OpenVINO 完成模型推理优化与加速部署，实现虚实迁移。",
-                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/四足机器人.gif", 
+                shortDesc: "采用 PPO 算法完成策略训练，并运用 OpenVINO 在边缘侧实现推理加速，打通虚实迁移链路。",
+                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/四足机器人.gif",
                 fullDesc: `
-                    <p><strong>项目背景：</strong>针对电子设计竞赛AI 专项赛开发，核心依托 Unitree Go2 四足机器人平台。</p>
-                    <p><strong>算法仿真：</strong>依托 Isaac Gym 搭建物理仿真环境，采用 PPO 强化学习算法完成运动策略训练，并通过参数调优提升模型收敛效率。</p>
-                    <p><strong>虚实迁移：</strong>引入域随机化技术缩小虚实环境差异，增强策略泛化性与环境适应性，解决了仿真到真机时的抖动问题。</p>
-                    <p><strong>边缘侧部署：</strong>针对 Intel Core Ultra 硬件平台，运用 OpenVINO 完成深度学习模型推理优化、量化压缩与加速部署，大幅降低算力占用，实现机器人自主起立、抗扰动行走功能。</p>
-                `,
-                github: "#" // 填入你的比赛项目仓库链接
+                    <h4>项目背景</h4><p>针对电子设计竞赛 AI 专项赛开发，核心依托 Unitree Go2 四足机器人平台。</p>
+                    <h4>核心技术</h4>
+                    <ul>
+                        <li><strong>仿真环境：</strong>依托 Isaac Gym 搭建物理仿真，采用 PPO 算法完成运动策略训练。</li>
+                        <li><strong>虚实迁移：</strong>引入域随机化技术，增强策略泛化性，有效解决了真机部署时的抖动问题。</li>
+                        <li><strong>边缘侧部署：</strong>针对 Intel Core Ultra 平台，运用 OpenVINO 完成量化压缩与加速，实现自主起立与抗扰动行走。</li>
+                    </ul>`
             },
             {
-                id: 2,
-                title: "基于计算机视觉的实时手势识别与控制系统",
-                date: "2025/10 - 2026/1",
-                tags: ["Python", "OpenCV", "SVM & LSTM", "MediaPipe"],
-                shortDesc: "结合传统机器学习（SVM）与深度学习（LSTM），实现低延迟（<100ms）、高精度（≥95%）的静态与动态手势系统级控制。",
-                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/网页浏览.gif", // 可以在这里填入你的演示动图 (GIF) 链接
+                id: 2, title: "实时视觉手势识别与控制系统", date: "2025/10 - 2026/01",
+                tags: ["Python", "OpenCV", "SVM & LSTM"],
+                shortDesc: "结合 SVM 与 LSTM 双模型架构，实现系统级控制，处理延迟严格控制在 100ms 以内。",
+                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/网页浏览.gif",
                 fullDesc: `
-                    <p><strong>项目概述：</strong>本项目是一个端到端的实时手势识别控制系统。能够通过摄像头实时捕捉并解析 14 种静态手势与 4 种动态手势，利用 PyAutoGUI 将其无缝映射为电脑系统级控制操作（如媒体控制、页面演示、鼠标精准控制等）。</p>
-
-                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">核心技术架构</h4>
-                    <ul style="padding-left: 20px; margin-bottom: 20px; color: #444;">
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>高效视觉特征提取：</strong>利用 OpenCV 处理视频流，集成 Google MediaPipe 提取手部 21 个 3D 关键点。</li>
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>双模型协同识别：</strong>
-                            <br>- <strong>静态手势 (SVM)：</strong>提取单手 63 维特征向量，采用带 RBF 核的支持向量机进行分类，识别准确率 ≥95%。
-                            <br>- <strong>动态手势 (LSTM)：</strong>提取 20 帧 × 双手共 2520 维时序特征，构建两层 LSTM 神经网络（附加 Dropout 防过拟合），精准解析动作时序，识别准确率 ≥80%。
-                        </li>
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>闭环数据与工程流：</strong>独立开发了完整的数据采集脚本、清洗合并工具以及模型重训流水线，支持高度自定义新手势录入。</li>
-                    </ul>
-
-                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">性能指标与亮点</h4>
-                    <div style="background: #000; padding: 15px; border: 4px solid var(--border-color); font-size: 0.95rem; box-shadow: 4px 4px 0px rgba(0,255,204,0.2);">
-                        <p style="margin-bottom: 5px;"><strong>量化精度极高：</strong>静态手势测试集 F1 分数达 0.9976；动态手势测试集 F1 分数达 1.0000。</p>
-                        <p style="margin-bottom: 5px;"><strong>卓越的实时性：</strong>端到端处理延迟 <strong style="color: var(--primary-color);">< 100ms</strong>，内存占用维持在 500MB 左右，CPU 使用率仅 15-25%。</p>
-                        <p style="margin-bottom: 0;"><strong>可调节灵敏度：</strong>针对不同应用场景，在代码层开放了降噪平滑系数、滚动阈值、概率置信度阈值 (0.7~0.8) 等多种超参数配置。</p>
-                    </div>
-                `,
-                github: "https://github.com/Einell/gesture-recognition-project"
+                    <h4>技术细节</h4>
+                    <ul>
+                        <li><strong>双模型协同：</strong>SVM 处理 14 种静态手势（准确率 ≥95%）；LSTM 解析 4 种动态手势。</li>
+                        <li><strong>高效提取：</strong>集成 MediaPipe 提取 21 个 3D 关键点，降低计算冗余。</li>
+                        <li><strong>量化表现：</strong>静态手势 F1 分数达 0.9976，支持媒体、鼠标等多种系统级交互映射。</li>
+                    </ul>`
             },
             {
-                id: 3,
-                title: "基于 STM32 的智能化 PID 温控系统",
-                date: "2025/3 - 2025/6",
-                tags: ["STM32F407", "PID 算法", "时间片调度", "软硬件协同"],
-                shortDesc: "采用改进型位置式 PID 算法与时间片轮询架构，实现具备图形化界面、动态绘制算法与远程通信能力的高精度闭环温控系统。",
-                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/温控系统.jpg", // 如果你有屏幕显示界面的照片，可以填在这里
+                id: 3, title: "智能化高精度 PID 温控系统", date: "2025/03 - 2025/06",
+                tags: ["STM32", "PID 算法", "硬件开发"],
+                shortDesc: "基于时间片轮询架构与改进型 PID 算法，实现具备图形化界面与远程上报能力的闭环温控平台。",
+                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/温控系统.jpg",
                 fullDesc: `
-                    <p><strong>项目概述：</strong>本项目是基于 STM32F407 开发的一款多功能嵌入式智能化温控系统。系统集成了温湿度传感器、直流电机（模拟风扇）、LCD 触摸屏、数码管及 WiFi 模块，实现了自动/手动双模式无缝切换与可视化交互。</p>
-
-                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">核心技术亮点</h4>
-                    <ul style="padding-left: 20px; margin-bottom: 20px; color: #444;">
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>闭环 PID 控制：</strong>实现位置式 PID 算法输出 0%–100% PWM 无级调速。针对积分饱和问题，引入<strong>积分限幅与条件积分清零</strong>策略，显著减少温度超调。</li>
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>时间片轮询架构：</strong>摒弃低效的阻塞延时，基于 <code>millis()</code> 设计 20ms / 100ms / 1000ms 三级非阻塞任务调度机制，确保触摸扫描、按键检测与 PID 计算的高效并发执行。</li>
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>图形化交互与算法：</strong>在 LCD 屏上实现三页面动态切换。基于三角函数动态绘制风扇叶片，采用<strong>局部擦除+背景重绘</strong>解决界面闪烁；运用<strong>扫迹算法</strong>实现历史温度折线图的无缝滚动刷新。</li>
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>多维度状态同步：</strong>使用 I2C 协议驱动 CH455 数码管实时分离显示温度，配合 LED 流水灯预警，并通过 ESP8266 (UDP 协议) 将系统状态封装上报至远程客户端。</li>
-                        <li style="margin-bottom: 10px; color: var(--text-main);"><strong>高鲁棒性容错设计：</strong>针对 DHT11 偶发的读取失败，设计了基于电机运行状态的温度模拟机制以维持系统运转；对触摸输入增加时间戳防抖与越界限幅（16–32°C），提升抗干扰能力。</li>
-                    </ul>
-
-                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">硬件架构</h4>
-                    <div style="background: #000; padding: 15px; border: 4px solid var(--border-color); font-size: 0.95rem; box-shadow: 4px 4px 0px rgba(0,255,204,0.2);">
-                        <p style="margin-bottom: 5px;"><strong>主控芯片：</strong>STM32F407ZGT6</p>
-                        <p style="margin-bottom: 5px;"><strong>感知与执行：</strong>DHT11 温湿度传感器、直流电机（风扇）</p>
-                        <p style="margin-bottom: 5px;"><strong>显示与交互：</strong>ILI9341 LCD 触摸屏、CH455 数码管、矩阵物理按键</p>
-                        <p style="margin-bottom: 0;"><strong>通信与报警：</strong>ESP8266 (WiFi)、8路 LED 流水灯</p>
-                    </div>
-                `,
-                github: "https://github.com/Einell/Temperature-Control-System-on-STM32F407"
+                    <h4>项目亮点</h4>
+                    <ul>
+                        <li><strong>控制逻辑：</strong>实现位置式 PID，引入积分限幅与条件清零策略，消除调节超调。</li>
+                        <li><strong>系统架构：</strong>基于时间片任务调度，确保触摸扫描与数据计算的高并发稳定性。</li>
+                        <li><strong>可视化交互：</strong>动态绘制历史温度曲线，并实现基于 I2C 的数码管同步与 WiFi 数据上报。</li>
+                    </ul>`
             }
         ];
 
-        // ================= 渲染与交互逻辑 =================
         const projectList = document.getElementById('project-list');
-        const modal = document.getElementById('projectModal');
-
-        // 生成卡片
-        projects.forEach((proj, index) => {
-            const tagsHtml = proj.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+        projects.forEach(p => {
             const card = document.createElement('div');
-            card.className = `card reveal ${index < 3 ? 'active' : ''}`; // 默认前几个直接显示
+            card.className = 'card reveal';
             card.innerHTML = `
-                <h3>${proj.title}</h3>
-                <span class="date">${proj.date}</span>
-                <p>${proj.shortDesc}</p>
-                <div style="margin-bottom: 15px;">${tagsHtml}</div>
-                <div class="click-hint">CLICK TO START</div>
+                <span class="date">${p.date}</span>
+                <h3>${p.title}</h3>
+                <p>${p.shortDesc}</p>
+                <div class="tag-container">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
             `;
-            card.onclick = () => openModal(proj.id);
+            card.onclick = () => openModal(p.id);
             projectList.appendChild(card);
         });
 
-        // 打开弹窗
         function openModal(id) {
-            const proj = projects.find(p => p.id === id);
-            document.getElementById('modalTitle').innerText = proj.title;
-            document.getElementById('modalDate').innerText = proj.date;
-            document.getElementById('modalDesc').innerHTML = proj.fullDesc;
-            
-            // 处理图片/视频显示
-            const imgElement = document.getElementById('modalImage');
-            const placeholder = document.getElementById('modalImagePlaceholder');
-            if (proj.imageUrl) {
-                // 如果是 github blob 链接，需要转换为 raw 链接才能直接显示图片
-                let imgUrl = proj.imageUrl.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/");
-                imgElement.src = imgUrl;
-                imgElement.style.display = 'block';
-                placeholder.style.display = 'none';
-            } else {
-                imgElement.style.display = 'none';
-                placeholder.style.display = 'flex';
-            }
-
-            // 处理 GitHub 按钮
-            const githubBtn = document.getElementById('modalGithub');
-            if(proj.github && proj.github !== "#") {
-                githubBtn.href = proj.github;
-                githubBtn.style.display = 'inline-block';
-            } else {
-                githubBtn.style.display = 'none';
-            }
-
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // 背景禁止滚动
+            const p = projects.find(x => x.id === id);
+            document.getElementById('modalTitle').innerText = p.title;
+            document.getElementById('modalDate').innerText = p.date;
+            document.getElementById('modalDesc').innerHTML = p.fullDesc;
+            const img = document.getElementById('modalImage');
+            if(p.imageUrl) {
+                img.src = p.imageUrl.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/");
+                img.style.display = 'block';
+            } else { img.style.display = 'none'; }
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
-        // 关闭弹窗
         function closeModal(e) {
-            if (e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto'; // 恢复滚动
-            }
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
-        // 滚动淡入动画
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 50) {
-                    reveals[i].classList.add("active");
-                }
-            }
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 50) el.classList.add('active');
+            });
         }
-        window.addEventListener("scroll", reveal);
-        setTimeout(reveal, 100);
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
     </script>
 </body>
 </html>
