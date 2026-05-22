@@ -174,7 +174,7 @@
                 date: "2026/3 - 至今",
                 tags: ["强化学习", "Isaac Gym", "OpenVINO"],
                 shortDesc: "采用 PPO 算法完成运动策略训练，并运用 OpenVINO 完成模型推理优化与加速部署，实现虚实迁移。",
-                imageUrl: "", // 在双引号中填入你的动图或图片网络地址，例如 "https://..."
+                imageUrl: "https://github.com/Einell/Einell.github.io/blob/main/images/四足机器人.gif", // 在双引号中填入你的动图或图片网络地址，例如 "https://..."
                 fullDesc: `
                     <p><strong>项目背景：</strong>针对 13th Intel Cup 嵌入式 AI 特别赛开发，核心依托 Unitree Go2 四足机器人平台。</p>
                     <p><strong>算法仿真：</strong>依托 Isaac Gym 搭建物理仿真环境，采用 PPO 强化学习算法完成运动策略训练，并通过参数调优提升模型收敛效率。</p>
@@ -185,28 +185,59 @@
             },
             {
                 id: 2,
-                title: "基于 SVM 与 LSTM 的手势识别控制系统",
+                title: "基于计算机视觉的实时手势识别与控制系统",
                 date: "2025/10 - 2026/1",
-                tags: ["Python", "OpenCV", "Machine Learning"],
-                shortDesc: "结合 SVM 处理静态手势，LSTM 解析动态动作，系统识别准确率稳定在 90% 以上。",
-                imageUrl: "", // 填入图片地址
+                tags: ["Python", "OpenCV", "SVM & LSTM", "MediaPipe"],
+                shortDesc: "结合传统机器学习（SVM）与深度学习（LSTM），实现低延迟（<100ms）、高精度（≥95%）的静态与动态手势系统级控制。",
+                imageUrl: "", // 可以在这里填入你的演示动图 (GIF) 链接
                 fullDesc: `
-                    <p>独立完成整套手势识别控制系统设计与开发。运用 Python、OpenCV 实现图像采集与手部关键点检测。</p>
-                    <p>自主搭建数据采集流程，结合 SVM 算法处理静态手势、LSTM 模型解析动态手势动作。通过不断优化网络模型结构，最终在复杂背景下的识别准确率稳定在 90% 以上。</p>
+                    <p><strong>项目概述：</strong>本项目是一个端到端的实时手势识别控制系统。能够通过摄像头实时捕捉并解析 14 种静态手势与 4 种动态手势，利用 PyAutoGUI 将其无缝映射为电脑系统级控制操作（如媒体控制、页面演示、鼠标精准控制等）。</p>
+
+                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">核心技术架构</h4>
+                    <ul style="padding-left: 20px; margin-bottom: 20px; color: #444;">
+                        <li style="margin-bottom: 10px;"><strong>高效视觉特征提取：</strong>利用 OpenCV 处理视频流，集成 Google MediaPipe 提取手部 21 个 3D 关键点。</li>
+                        <li style="margin-bottom: 10px;"><strong>双模型协同识别：</strong>
+                            <br>- <strong>静态手势 (SVM)：</strong>提取单手 63 维特征向量，采用带 RBF 核的支持向量机进行分类，识别准确率 ≥95%。
+                            <br>- <strong>动态手势 (LSTM)：</strong>提取 20 帧 × 双手共 2520 维时序特征，构建两层 LSTM 神经网络（附加 Dropout 防过拟合），精准解析动作时序，识别准确率 ≥80%。
+                        </li>
+                        <li style="margin-bottom: 10px;"><strong>闭环数据与工程流：</strong>独立开发了完整的数据采集脚本、清洗合并工具以及模型重训流水线，支持高度自定义新手势录入。</li>
+                    </ul>
+
+                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">性能指标与亮点</h4>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; font-size: 0.95rem; border: 1px solid #eee;">
+                        <p style="margin-bottom: 5px;"><strong>量化精度极高：</strong>静态手势测试集 F1 分数达 0.9976；动态手势测试集 F1 分数达 1.0000。</p>
+                        <p style="margin-bottom: 5px;"><strong>卓越的实时性：</strong>端到端处理延迟 <strong>< 100ms</strong>，内存占用维持在 500MB 左右，CPU 使用率仅 15-25%。</p>
+                        <p style="margin-bottom: 0;"><strong>可调节灵敏度：</strong>针对不同应用场景，在代码层开放了降噪平滑系数、滚动阈值、概率置信度阈值 (0.7~0.8) 等多种超参数配置。</p>
+                    </div>
                 `,
                 github: "https://github.com/Einell/gesture-recognition-project"
             },
             {
                 id: 3,
-                title: "基于 STM32 的高精度恒温控制系统",
+                title: "基于 STM32 的智能化 PID 温控系统",
                 date: "2025/3 - 2025/6",
-                tags: ["STM32F407", "PID 算法", "硬件开发"],
-                shortDesc: "采用改进型增量式 PID 控制算法，引入积分分离策略减少调节超调，实现温度高精度稳定控制。",
-                imageUrl: "", // 填入图片地址
+                tags: ["STM32F407", "PID 算法", "时间片调度", "软硬件协同"],
+                shortDesc: "采用改进型位置式 PID 算法与时间片轮询架构，实现具备图形化界面、动态绘制算法与远程通信能力的高精度闭环温控系统。",
+                imageUrl: "", // 如果你有屏幕显示界面的照片，可以填在这里
                 fullDesc: `
-                    <p><strong>硬件搭建：</strong>基于 STM32F407 单片机，搭配温湿度传感器、电机、LED显示屏及 Wi-Fi 模块，完成整套环境调控硬件系统搭建。</p>
-                    <p><strong>控制算法：</strong>采用改进型增量式 PID 控制算法，引入积分分离策略减少调节超调，实现温度的高精度闭环稳定控制。</p>
-                    <p><strong>物联网交互：</strong>完成串口屏人机交互界面开发与云端数据上传功能，实时监测设备运行状态，系统经过长时间测试，运行稳定可靠。</p>
+                    <p><strong>项目概述：</strong>本项目是基于 STM32F407 开发的一款多功能嵌入式智能化温控系统。系统集成了温湿度传感器、直流电机（模拟风扇）、LCD 触摸屏、数码管及 WiFi 模块，实现了自动/手动双模式无缝切换与可视化交互。</p>
+
+                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">核心技术亮点</h4>
+                    <ul style="padding-left: 20px; margin-bottom: 20px; color: #444;">
+                        <li style="margin-bottom: 10px;"><strong>闭环 PID 控制：</strong>实现位置式 PID 算法输出 0%–100% PWM 无级调速。针对积分饱和问题，引入<strong>积分限幅与条件积分清零</strong>策略，显著减少温度超调。</li>
+                        <li style="margin-bottom: 10px;"><strong>时间片轮询架构：</strong>摒弃低效的阻塞延时，基于 <code>millis()</code> 设计 20ms / 100ms / 1000ms 三级非阻塞任务调度机制，确保触摸扫描、按键检测与 PID 计算的高效并发执行。</li>
+                        <li style="margin-bottom: 10px;"><strong>图形化交互与算法：</strong>在 LCD 屏上实现三页面动态切换。基于三角函数动态绘制风扇叶片，采用<strong>局部擦除+背景重绘</strong>解决界面闪烁；运用<strong>扫迹算法</strong>实现历史温度折线图的无缝滚动刷新。</li>
+                        <li style="margin-bottom: 10px;"><strong>多维度状态同步：</strong>使用 I2C 协议驱动 CH455 数码管实时分离显示温度，配合 LED 流水灯预警，并通过 ESP8266 (UDP 协议) 将系统状态封装上报至远程客户端。</li>
+                        <li style="margin-bottom: 10px;"><strong>高鲁棒性容错设计：</strong>针对 DHT11 偶发的读取失败，设计了基于电机运行状态的温度模拟机制以维持系统运转；对触摸输入增加时间戳防抖与越界限幅（16–32°C），提升抗干扰能力。</li>
+                    </ul>
+
+                    <h4 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary-color); font-size: 1.1rem;">硬件架构</h4>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; font-size: 0.95rem; border: 1px solid #eee;">
+                        <p style="margin-bottom: 5px;"><strong>主控芯片：</strong>STM32F407ZGT6</p>
+                        <p style="margin-bottom: 5px;"><strong>感知与执行：</strong>DHT11 温湿度传感器、直流电机（风扇）</p>
+                        <p style="margin-bottom: 5px;"><strong>显示与交互：</strong>ILI9341 LCD 触摸屏、CH455 数码管、矩阵物理按键</p>
+                        <p style="margin-bottom: 0;"><strong>通信与报警：</strong>ESP8266 (WiFi)、8路 LED 流水灯</p>
+                    </div>
                 `,
                 github: "https://github.com/Einell/Temperature-Control-System-on-STM32F407"
             }
